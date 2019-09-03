@@ -21,7 +21,7 @@ title: Zhang ZhouJian
 email: me@zhangzhoujian.com
 description: >- # this means to ignore newlines until "baseurl:"
   Pages of Zhang ZhouJian
-baseurl: "/blog" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://pages.zhangzhoujian.com" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  zhangzhoujian
 
