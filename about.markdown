@@ -4,15 +4,38 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+# Zhang ZhouJian - 张周健
+> Living in Shanghai, China with my wife
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+Github：zhangzhoujian
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+## Timeline
+### 2017.9 - Present
+HP PSSW Shanghai: Software Engineer
 
+### 2016.2 - 2017.9
+FinTech Shanghai: Software Engineer / Quality Assurance
 
-[jekyll-organization]: https://github.com/jekyll
+### 2014.7 - 2016.2
+Pionner Suntec: Quality Assurance
+
+### 2010.9 - 2014.7
+Shanghai Financial University: Computer Science
+
+### 2007.9 - 2010.6
+Shanghai Fengxian High School, Fengxian District, Shanghai
+
+### 2003.9 - 2007.6
+Lingyun Middle School, Chongming District, Shanghai
+
+### 1999.9 - 2003.6
+Central Primary School of Gangyan Town, Chongming District, Shanghai
+
+### 1998.9 - 1999.6
+Lock Factory Primary School of Qianjin Farm, Chongming District, Shanghai
+
+### 1995.9 - 1998.6
+Qianjin Farm Kindergarten, Chongming District, Shanghai
+
+### 1992.6 - 1995.6 
+Born
