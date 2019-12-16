@@ -1,0 +1,7 @@
+.DS_Store
+*tags
+.sass-cache/*
+_site
+_includes
+install.sh
+.jekyll-cache/

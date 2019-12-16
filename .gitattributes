@@ -1,0 +1,5 @@
+* text=auto
+
+*.epub binary
+*.mobi binary
+*.pdf binary
