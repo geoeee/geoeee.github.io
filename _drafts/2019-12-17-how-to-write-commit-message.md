@@ -1,7 +1,6 @@
 ---
-layout: post
 title:  "How to write commit messsage"
-date:   2019-09-09 17:30:16 +0800
+layout: post
 categories: git commit
 ---
 
