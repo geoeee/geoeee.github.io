@@ -1,23 +1,7 @@
----
-layout: default
----
 
-{% include header.html %}
 
-<div class="blog">
-    <h1>archive</h1>
-	<hr>
-    <ol>
-        <li>
-        </li>
-        {% for post in site.posts %}
-        <li>
-            {% if post.type == "external" %}
-                <a href="{{ post.link }}" target="_blank">{{ post.title }}</a><span class="date"> {{ post.date | date: '%Y-%m-%d' }}
-            {% else %}
-                <a href="{{ post.url }}">{{ post.title }}</a><span class="date"> {{ post.date | date: '%Y-%m-%d' }}
-            {% endif %}
-        </li>
-        {% endfor %}
-    </ol>
-</div>
+<html>
+	<body>
+	This is test index.html
+	</body>
+</html>
