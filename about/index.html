@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +25,26 @@
         .container {
             max-width: 560px;
             width: 100%;
+            position: relative;
+        }
+
+        .lang-switch {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #fff;
+            border: 1px solid #e8e8e8;
+            border-radius: 6px;
+            padding: 0.35rem 0.75rem;
+            font-size: 0.8rem;
+            color: #666;
+            cursor: pointer;
+            transition: border-color 0.15s;
+        }
+
+        .lang-switch:hover {
+            border-color: #333;
+            color: #333;
         }
 
         .back {
@@ -91,17 +111,19 @@
 </head>
 <body>
     <div class="container">
-        <a class="back" href="/">← Home</a>
-        <h1>About</h1>
+        <button class="lang-switch" onclick="toggleLang()">中文</button>
+
+        <a class="back" href="/" data-i18n="back">← Home</a>
+        <h1 data-i18n="title">About</h1>
 
         <div class="bio">
-            <p>应用程序员，5+ 年项目管理经验。当前方向：AI 应用开发、Agent 架构，同时在补数学基础（线代/概率/优化）。</p>
+            <p data-i18n="bio">Application developer with 5+ years of project management experience. Currently focused on AI application development and Agent architecture, while building up math foundations (linear algebra / probability / optimization).</p>
         </div>
 
         <div class="timeline">
             <div class="timeline-item">
-                <div class="time">2017 — Present</div>
-                <div class="role">Software Engineer</div>
+                <div class="time" data-i18n="t1.time">2017 — Present</div>
+                <div class="role" data-i18n="t1.role">Software Engineer</div>
                 <div class="org">HP PSSW, Shanghai</div>
             </div>
             <div class="timeline-item">
@@ -111,15 +133,64 @@
             </div>
             <div class="timeline-item">
                 <div class="time">2014 — 2016</div>
-                <div class="role">Quality Assurance</div>
+                <div class="role" data-i18n="t3.role">Quality Assurance</div>
                 <div class="org">Pioneer Suntec</div>
             </div>
             <div class="timeline-item">
                 <div class="time">2010 — 2014</div>
-                <div class="role">Computer Science</div>
-                <div class="org">Shanghai Financial University</div>
+                <div class="role" data-i18n="t4.role">Computer Science</div>
+                <div class="org" data-i18n="t4.org">Shanghai Financial University</div>
             </div>
         </div>
     </div>
+
+    <script>
+    const i18n = {
+        en: {
+            'back': '← Home',
+            'title': 'About',
+            'bio': 'Application developer with 5+ years of project management experience. Currently focused on AI application development and Agent architecture, while building up math foundations (linear algebra / probability / optimization).',
+            't1.time': '2017 — Present',
+            't1.role': 'Software Engineer',
+            't3.role': 'Quality Assurance',
+            't4.role': 'Computer Science',
+            't4.org': 'Shanghai Financial University'
+        },
+        zh: {
+            'back': '← 首页',
+            'title': '关于',
+            'bio': '应用程序员，5+ 年项目管理经验。当前方向：AI 应用开发、Agent 架构，同时在补数学基础（线代/概率/优化）。',
+            't1.time': '2017 — 至今',
+            't1.role': '软件工程师',
+            't3.role': '质量保证',
+            't4.role': '计算机科学',
+            't4.org': '上海金融学院'
+        }
+    };
+
+    function getLang() {
+        return localStorage.getItem('lang') || 'en';
+    }
+
+    function setLang(lang) {
+        localStorage.setItem('lang', lang);
+        applyLang(lang);
+    }
+
+    function applyLang(lang) {
+        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (i18n[lang][key]) el.textContent = i18n[lang][key];
+        });
+        document.querySelector('.lang-switch').textContent = lang === 'en' ? '中文' : 'EN';
+    }
+
+    function toggleLang() {
+        setLang(getLang() === 'en' ? 'zh' : 'en');
+    }
+
+    applyLang(getLang());
+    </script>
 </body>
 </html>
