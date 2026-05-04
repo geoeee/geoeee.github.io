@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writings - Joey Zhang</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background: #fafafa;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container { max-width: 560px; width: 100%; }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .back:hover { color: #333; }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #111;
+        }
+
+        .post-list { list-style: none; }
+
+        .post-list li {
+            margin-bottom: 1rem;
+        }
+
+        .post-list a {
+            display: block;
+            padding: 0.875rem 1.25rem;
+            background: #fff;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.15s ease;
+        }
+        .post-list a:hover {
+            border-color: #333;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .post-title { font-weight: 500; }
+        .post-date { font-size: 0.8rem; color: #999; margin-top: 0.2rem; }
+        .post-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            color: #888;
+            background: #f0f0f0;
+            padding: 0.1rem 0.5rem;
+            border-radius: 4px;
+            margin-top: 0.3rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="back" href="/">← Home</a>
+        <h1>Writings</h1>
+
+        <ul class="post-list">
+            <li>
+                <a href="using-makefiles-for-go">
+                    <div class="post-title">Using Makefile(s) for Go</div>
+                    <div class="post-date">2019-12-07</div>
+                    <span class="post-tag">go</span> <span class="post-tag">make</span>
+                </a>
+            </li>
+            <li>
+                <a href="researching-plan">
+                    <div class="post-title">Researching Plan</div>
+                    <div class="post-date">2019-12-17</div>
+                    <span class="post-tag">plan</span>
+                </a>
+            </li>
+            <li>
+                <a href="vim-package-management">
+                    <div class="post-title">Vim Package Management</div>
+                    <div class="post-date">2019-12-17</div>
+                    <span class="post-tag">vim</span>
+                </a>
+            </li>
+            <li>
+                <a href="how-to-write-commit-message">
+                    <div class="post-title">How to Write Commit Messages</div>
+                    <div class="post-date">2019-12-17</div>
+                    <span class="post-tag">git</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

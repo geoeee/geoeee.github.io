@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Using Makefile(s) for Go</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #fafafa; margin: 0; padding: 2rem; }
+.container { max-width: 640px; margin: 0 auto; }
+.back { display: inline-block; margin-bottom: 1.5rem; color: #0066cc; text-decoration: none; font-size: 0.9rem; }
+h1 { font-size: 1.75rem; color: #111; margin-bottom: 0.25rem; }
+.meta { color: #999; font-size: 0.85rem; margin-bottom: 2rem; }
+.tag { display: inline-block; font-size: 0.7rem; color: #888; background: #f0f0f0; border-radius: 4px; padding: 0.1rem 0.5rem; margin-left: 0.25rem; }
+.content { line-height: 1.8; color: #444; }
+.content h2 { font-size: 1.2rem; margin-top: 2rem; color: #111; }
+.content pre { background: #f5f5f5; border-radius: 6px; overflow-x: auto; padding: 1rem; font-size: 0.85rem; }
+.content code { background: #f5f5f5; border-radius: 4px; padding: 0.1rem 0.3rem; font-size: 0.85rem; }
+.content pre code { background: none; padding: 0; }
+.content a { color: #0066cc; }
+.content ul, .content li { margin-left: 1.5rem; }
+</style>
+</head>
+<body>
+<div class="container">
+<a href="/writings/" class="back">← Writings</a>
+<h1>Using Makefile(s) for Go</h1>
+<div class="meta">2019-12-07 <span class="tag">go</span> <span class="tag">make</span></div>
+<div class="content">
+<p>We've been using <code>make</code> as a build tool for one of our project at HackerRank which is written in Go and it has been working out fairly well. In this post, I'll point out a few features and intricacies of GNU Make we've used which eventually improved the overall productivity of members in our team.</p>
+
+<h2>Introduction</h2>
+<p><code>make</code> is a simple utility which detects which part of a large project needs to be recompiled and executes user-defined commands to carry out compilation or other required actions. It's also widely used a build tool wherein you specify a set of commands to be run which you inherently used to write on the command-line repeatedly. The latter is what the rest of this post is about.</p>
+<p>For the purpose of this post, we'll assume we are working on a Go project, <code>stringifier</code> and will be writing a Makefile for the same which is also named <code>Makefile</code>.</p>
+
+<h2>Build and Run</h2>
+<p>These are two actions that go programmers use pretty frequently, so let's add these targets to our Makefile:</p>
+<pre><code>build:
+	go build -o stringifier main.go
+
+run:
+	go run -race main.go</code></pre>
+
+<h2>Cleaning and DRYing</h2>
+<p>After building the binary and running the application just fine, let's make sure we are cleaning the binaries before proceeding with anything else:</p>
+<pre><code>APP=stringifier
+
+build: clean
+	go build -o ${APP} main.go
+
+run:
+	go run -race main.go
+
+clean:
+	rm -rf ${APP}</code></pre>
+
+<h2>PHONY targets</h2>
+<p>To avoid conflicts with files named the same as targets:</p>
+<pre><code>.PHONY: build
+build: clean
+	go build -o ${APP} main.go
+
+.PHONY: run
+run:
+	go run -race main.go
+
+.PHONY: clean
+clean:
+	rm -rf ${APP}</code></pre>
+
+<h2>Recursive Make targets</h2>
+<p>For sub-modules with their own Makefiles:</p>
+<pre><code>.PHONY: build-tokenizer
+build-tokenizer:
+	${MAKE} -C tokenizer build</code></pre>
+
+<h2>Docker commands</h2>
+<pre><code>APP?=application
+REGISTRY?=gcr.io/images
+COMMIT_SHA=$(shell git rev-parse --short HEAD)
+
+.PHONY: docker-build
+docker-build: build
+	docker build -t ${APP}:${COMMIT_SHA} .
+
+.PHONY: docker-push
+docker-push: check-environment docker-build
+	docker push ${REGISTRY}/${ENV}/${APP}:${COMMIT_SHA}
+
+check-environment:
+ifndef ENV
+    $(error ENV not set, allowed values - staging or production)
+endif</code></pre>
+
+<h2>Help target</h2>
+<pre><code>.PHONY: help
+help:
+	@echo "Usage: \n"
+	@sed -n 's/^##//p' ${MAKEFILE_LIST} | column -t -s ':' | sed -e 's/^/ /'</code></pre>
+</div>
+</div>
+</body>
+</html>
